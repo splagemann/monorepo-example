@@ -1,0 +1,1 @@
+web: RAILS_LOG_TO_STDOUT=true bundle exec puma -C config/puma.rb
