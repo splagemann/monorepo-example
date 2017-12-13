@@ -1,0 +1,28 @@
+coverage:
+  status:
+    project:
+      default: off
+      first-app:
+        flags: first-app
+      first-elixir-app:
+        target: 80%
+        flags: first-elixir-app
+      second-app:
+        target: 80%
+        flags: second-app
+
+flags:
+  # filter the folder(s) you wish to measure by that flag
+  first-app:
+    # only include files in the backend folder
+    paths:
+      - first-app/
+  first-elixir-app:
+    paths:
+      - first-elixir-app/
+  second-app:
+    paths:
+      - second-app/
+  tests:
+    paths:
+      - tests/
