@@ -1,8 +1,12 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start('rails') do
+  root File.expand_path('..', Dir.pwd) if ENV['CI']
+end
 
-require 'codecov'
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+if ENV['CI']
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
 
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
