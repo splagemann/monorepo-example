@@ -1,0 +1,30 @@
+sudo: false
+
+matrix:
+  include:
+  - language: elixir
+    elixir: 1.5.2
+    otp_release: 19.0
+    env:
+      - APP_BASE=first-elixir-app
+  - language: ruby
+    dist: precise
+    rvm: 2.4.0
+    env:
+      - APP_BASE=first-app
+  - language: ruby
+    dist: precise
+    rvm: 2.4.0
+    env:
+      - APP_BASE=second-app
+
+before_install: cd $APP_BASE
+
+install: bin/install
+
+script: if git diff --name-only HEAD..$TRAVIS_BRANCH | grep "$APP_BASE/"; then bin/test; fi
+
+services:
+  - postgresql
+addons:
+  postgresql: '9.4'
