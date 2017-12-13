@@ -20,8 +20,8 @@ matrix:
 
 services:
   - postgresql
-  addons:
-    postgresql: '9.4'
+addons:
+  postgresql: '9.4'
 
 before_install: cd $APP_BASE
 
