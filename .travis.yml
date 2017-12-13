@@ -18,13 +18,19 @@ matrix:
     env:
       - APP_BASE=second-app
 
+services:
+  - postgresql
+addons:
+  postgresql: '9.4'
+
 before_install: cd $APP_BASE
 
 install: bin/install
 
 script: if git diff --name-only HEAD..$TRAVIS_BRANCH | grep "$APP_BASE/"; then bin/test; fi
 
-services:
-  - postgresql
-addons:
-  postgresql: '9.4'
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email: false
